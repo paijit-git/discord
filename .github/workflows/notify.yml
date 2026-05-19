@@ -1,0 +1,39 @@
+import discord
+import asyncio
+from datetime import datetime
+
+# 1. ตั้งค่า Token และ Channel ID ของคุณ
+TOKEN = "YOUR_DISCORD_BOT_TOKEN"
+CHANNEL_ID = 123456789012345678  # แทนที่ด้วย ID ห้องแชทของคุณ (ไม่ต้องใส่เครื่องหมายคำพูด)
+
+intents = discord.Intents.default()
+client = discord.Client(intents=intents)
+
+async def schedule_task():
+    await client.wait_until_ready()
+    channel = client.get_channel(CHANNEL_ID)
+    
+    #while not client.is_closed():
+     now = datetime.now()
+     current_time = now.strftime("%H:%M")
+        
+     # 2. ปรับแต่งเวลาได้ตามต้องการ (รูปแบบ 24 ชั่วโมง)
+     if current_time in ["08:00"]:
+         await channel.send("⏰ สวัสดีตอนเช้าครับ ได้เวลาเติมพลังใจ มาทำสมาธิ ก่อนเริ่มเรียนกันเถอะ")
+         await asyncio.sleep(60)  # หน่วงเวลา 1 นาทีเพื่อไม่ให้ข้อความซ้ำ
+     if current_time in ["12:00"]:
+         await channel.send("⏰ พักกลางวันชาร์จแบตร่างกายแล้ว มาทำสมาธิ ผลิตพลังจิต คลายความเครียดกันครับ")
+         await asyncio.sleep(60)  # หน่วงเวลา 1 นาทีเพื่อไม่ให้ข้อความซ้ำ
+     if current_time in ["18:00"]:
+         await channel.send("⏰ ช่วงเย็นชำระล้างจิตใจให้ผ่องใส มาทำสมาธิ เพื่อการสะสมพลังจิตครับ")
+         await asyncio.sleep(60)  # หน่วงเวลา 1 นาทีเพื่อไม่ให้ข้อความซ้ำ            
+      await asyncio.sleep(1)  # เช็คเวลาทุกๆ 1 วินาที
+
+@client.event
+async def on_ready():
+    print(f'Logged in as {client.user}')
+
+# รันลูปตั้งเวลาควบคู่ไปกับบอท
+client.loop.create_task(schedule_task())
+client.run(TOKEN)
+
