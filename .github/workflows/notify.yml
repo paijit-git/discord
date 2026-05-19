@@ -24,7 +24,7 @@ async def schedule_task():
      if current_time in ["12:00"]:
          await channel.send("⏰ พักกลางวันชาร์จแบตร่างกายแล้ว มาทำสมาธิ ผลิตพลังจิต คลายความเครียดกันครับ")
          await asyncio.sleep(60)  # หน่วงเวลา 1 นาทีเพื่อไม่ให้ข้อความซ้ำ
-     if current_time in ["18:56"]:
+     if current_time in ["19:00"]:
          await channel.send("⏰ ช่วงเย็นชำระล้างจิตใจให้ผ่องใส มาทำสมาธิ เพื่อการสะสมพลังจิตครับ")
          await asyncio.sleep(60)  # หน่วงเวลา 1 นาทีเพื่อไม่ให้ข้อความซ้ำ            
       await asyncio.sleep(1)  # เช็คเวลาทุกๆ 1 วินาที
